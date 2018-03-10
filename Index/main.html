@@ -1,0 +1,228 @@
+    <html>
+        <head>
+            <title>Medium blog's post counter by Manivasakam</title>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">                                    
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+            <style>            
+            @import url(https://fonts.googleapis.com/css?family=Josefin+Sans:300,400);            
+            ct{
+                text-align: center;                
+                font-family :'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+                font-size: 13px;
+            }
+            body{
+                background: linear-gradient(rgba(0, 0, 0, 0.84),rgba(0,0,0, 0.84)),url("https://www.fedcms.com/wp-content/uploads/2015/12/aboutus-background.png");                                               
+                height:100%;
+            }
+            h1{                
+                font : normal 300 40px/1 'Josefin Sans', sans-serif; 
+                color:rgb(48, 108, 230) !important;
+                text-align: center;                
+            }                        
+            #tc1{                
+                width: 450px; 
+                margin-left: auto; 
+                margin-right: auto;                
+            }
+            #d3s{
+                text-align: center;
+            }
+            #it1{
+                background: transparent !important;                                
+                border-style: solid;
+                border-width: 2px;                               
+                font-size: 18px;
+                margin-top: 20px;
+                border-radius: 44px;
+                border-color: #FF6501;
+                color: white;                
+            }
+            #ics{                
+                color:#FF6501;
+                font-size: 32px;
+                background: transparent;
+                border: transparent;
+                margin-top: auto !important;                
+            }
+            #th{
+                width: 450px; 
+                margin-left: auto; 
+                margin-right: auto;                
+                color:rgb(48, 108, 230) !important;
+                margin-top: 20px;
+                font-family: Georgia, 'Times New Roman', Times, serif !important;
+                font-size: 21px;                
+            }
+            #un1{
+                font-family: Georgia, 'Times New Roman', Times, serif !important;
+                font-size: 20px;                
+                color:white !important;                
+            }
+            #sno{
+                font-family: Georgia, 'Times New Roman', Times, serif !important;
+                font-size: 20px;
+                color:white !important;                
+                margin-left: 30px !important;
+            }
+            #unh1{
+                text-align: center;                
+            }
+            #uch{
+                font-family: Georgia, 'Times New Roman', Times, serif !important;
+                font-size: 20px;
+                color:white !important;                
+                margin-left: 30px;
+            }
+            #it1::placeholder{
+                    color:slategrey;
+                    text-align: center;                    
+            }
+            .mt2{
+                margin-top: 20px;
+            }
+            h2{
+                font : normal 300 28px/1 'Josefin Sans', sans-serif; 
+                color:rgb(48, 108, 230) !important;
+                 text-align: center;
+            }
+            #pt1{
+                text-align: center;
+            }
+            .Developer{
+                text-align: right;
+                margin-right: 10% !important;
+                color: white !important;
+            }         
+            #load{
+                width:100%;
+                height:100%;
+                position:fixed;
+                z-index:9999;
+                background:url("https://loading.io/spinners/microsoft/lg.rotating-balls-spinner.gif")  no-repeat center center rgba(0,0,0,0.30);
+                background-size: 100px 100px; 
+            }
+            </style>
+            </head>
+            <body>
+            <div id='load'></div>
+            <div class="container-fluid" id="dm1">                        
+                <div id="stw"><br><br><br><br><br><br></div>
+                <h1 id="h1a" class="ct">Medium Blog's Post Counter</h1>                                                 
+                <div id="d3s"> 
+                    <input type="text" placeholder="Blog's name here!" class="" id="it1" name="fname">
+                    <button id="ics" onclick="clickEvt()" class='btn btn-default  search fsc fa fa-search'></button>
+                </div>
+                <div id="exh" class="mt2">
+                    <h2 id="h1b">(Try Professional-Pirates,Slackjaw,Vantage)</h2><br>
+                    <h2>Further Information provided on &nbsp;<a href="https://github.com/ManivasakamR/medium-json" target="_blank">Github.com</a></h2><br>                                
+                </div>
+                <div id='th' class='row'>                    
+                </div>
+                <div id="tc1"></div>                    
+                <div id="dp1"></div>                      
+                </div>                                
+                <script>            
+
+                       
+            $(document).ready(function(){
+                $("#load").hide();        
+            });     
+            function clickEvt(){                                                      
+            var burl=document.getElementById('it1').value; 
+            if(burl==""){
+            alert('Please enter blog name');
+            $("#load").hide();        
+            } else
+            {
+            $("#load").show();                 
+            var burl=burl.replace(" ", "-");                            
+            var nurl='http://franmed.herokuapp.com/'+burl;                      
+            $("#d1s").removeClass("cen");            
+            document.getElementById('th').innerHTML="<div id='tch' class='col-xs-2'><th  id='ush'>Sno</th></div><div id='unh1' class='col-xs-6'><th id='usn'>Username</th></div><div class='col-xs-4'><th id='usp'>Posts</th></div>"
+            document.getElementById('exh').innerHTML="";                    
+            gdtmedium(nurl);            
+            }
+            }
+            function gdtmedium(url){
+            document.getElementById('tc1').innerHTML='';
+            document.getElementById('stw').innerHTML='';
+            var q;
+            var url1=url+'/archive';
+            var url2=url+'/latest?limit=1000&';            
+            $.getJSON(url1, function (data) {                                          
+            $.getJSON(url2, function (data2) {                                                                     
+            q=data2;                             
+            var p=data;
+            var una=[];
+            var uia=[];
+            var ch=[];
+            var iid=[];
+            var a=0;
+            
+            for (var key in p.response.payload.references.User) {
+            if (p.response.payload.references.User.hasOwnProperty(key)) { 
+            var s=JSON.stringify(p.response.payload.references.User[key]);         
+            var x=JSON.parse(s);                    
+            var ui=JSON.stringify(x.userId);
+            iid[a]=x.imageId;                                           
+            una[a]=x.name;                      
+            uia[a]=ui;                         
+            ch[a]=0;
+            }     
+            a+=1;
+            }
+
+
+            for (var key2 in q.response.payload.posts) {
+            if (q.response.payload.posts.hasOwnProperty(key2)) {         
+            var s1=JSON.stringify(q.response.payload.posts[key2]);                  
+            var x1=JSON.parse(s1);         
+            var ui2=JSON.stringify(x1.creatorId);
+            for(var t=0;t<uia.length;t++){
+            if(ui2==uia[t])
+            {                 
+             for(var te=0;te<uia.length;te++)
+             {
+                if(uia[t]==uia[te]){ch[te]+=1;}
+             }
+                }
+               }                           
+             }
+            }
+            
+            var max=ch[0];
+            for(var li=0;li<ch.length;li++){                               
+                if(ch[li]>max){
+                    max=ch[li];
+                }
+            }  
+            var niid=[];                      
+            var nuna=[];
+            var nch=[];                        
+            for(var li=max;li>=0;li--){                
+                for(var lj=0;lj<ch.length;lj++){                
+                    if(ch[lj]==li)           
+                    {
+                        niid.push(iid[lj]);
+                        nuna.push(una[lj]);
+                        nch.push(ch[lj]);                        
+                    }
+                }                    
+            }               
+            var div = document.getElementById('tc1');
+            for(var jl=0;jl<ch.length;jl++)
+            {        
+            //div.innerHTML += "<div class='row'><div class='col-xs-2'><ct id='sno'>"+(jl+1)+"</ct></div><div class='col-xs-6'><ct id='un1'>"+(nuna[jl])+"</ct></div><div class='col-xs-4'><ct id='uch'>"+(nch[jl])+"</ct><br></div></div>";            
+            div.innerHTML += "<div class='row'><div class='col-xs-2'><ct id='sno'>"+(jl+1)+"</ct></div><div class='col-xs-6'><img style='max-width:25px; max-height:25px; border-radius:13px;' src='https://cdn-images-1.medium.com/fit/c/100/100/"+(niid[jl])+"'></img><ct id='un1'>&nbsp"+(nuna[jl])+"</ct></div><div class='col-xs-4'><ct id='uch'>"+(nch[jl])+"</ct><br></div></div>";                        
+            $("#load").hide();            
+            document.getElementById('dp1').innerHTML="<h4 id='E1' class='Developer'>Developed By<a href='https://www.facebook.com/r.manivasakam' target='_blank' > Manivasakam R </a> </h4>";
+            } 
+            });
+            });
+            }
+        </script>
+    </body>
+</html>
